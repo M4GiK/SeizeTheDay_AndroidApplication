@@ -1,16 +1,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="vertical" >
+
+    <AnalogClock
+        android:id="@+id/analogClock1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/button_text" 
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/analogClock1"
         android:onClick="buttonPressed"
-        />
+        android:text="@string/button_text" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/analogClock1"
+        android:layout_marginBottom="51dp"
+        android:layout_marginLeft="29dp"
+        android:layout_toRightOf="@+id/analogClock1"
+        android:background="@null"
+        android:contentDescription="@string/Add"
+        android:onClick="add_button_pressed"
+        android:src="@drawable/button_add" />
 
 </RelativeLayout>

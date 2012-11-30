@@ -21,8 +21,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddComponent" android:label="AddComponent!">
-            
         </activity>
+        <activity android:name=".SetAlarm" android:label="Set alarm">
+        </activity>
+        
     </application>
 
 </manifest>

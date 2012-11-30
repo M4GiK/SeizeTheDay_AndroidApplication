@@ -5,6 +5,11 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">EndProject</string>
     
-    <string name="button_text">Add new component</string>
+    <string name="Add" >Add</string>
+    
+	<string name="button_text">Add new component</string>
+	<string name="button_text_weather">Weather component</string>
+	<string name="button_text_cancel">Cancel</string>
+	<string name="set_alarm">Set Alarm</string>
 
 </resources>

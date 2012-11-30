@@ -1,20 +1,24 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	>
+	<Button
+		android:id="@+id/button"
+		android:layout_width = "fill_parent"
+		android:layout_height = "wrap_content"
+        android:text="@string/button_text_weather" 
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="66dp"
-        android:layout_marginTop="120dp"
-        android:ems="10"
-        android:inputType="textPersonName" >
+	/>
 
-        <requestFocus />
-    </EditText>
+	<Button
+	    android:id="@+id/button1"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/button_text_cancel"
+	  	android:onClick="buttonPressed"
+	/>
 
-</RelativeLayout>
+</LinearLayout>

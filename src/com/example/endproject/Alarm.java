@@ -20,16 +20,10 @@ public class Alarm extends BroadcastReceiver
         // Put here YOUR code.
         Toast.makeText(context, "Alarm !!!!!!!!!!", Toast.LENGTH_LONG).show(); // For example
 
+        //todo remove me !
         Log.d("ok", "alarm");
         
         wl.release();
 	}
 	
-//	public void SetAlarm(Context context)
-//    {
-//        AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-//        Intent i = new Intent(context, Alarm.class);
-//        PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
-//        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES/15/2, pi); // Millisec * Second * Minute
-//    }
 }

@@ -26,7 +26,7 @@ public class MainActivity extends Activity
     {
     	Intent i = new Intent(MainActivity.this,SetAlarm.class);    	
     	startActivity(i);
-    //	((ImageButton)(v)).setImageResource(R.drawable.button_add_pressed);
+//    	((ImageButton)(v)).setImageResource(R.drawable.button_add_pressed);
 //    	imageButton1.setBackgroundDrawable(getResources().getDrawable(R.drawable.ImageName));
 //    	if(v == imageButton1)
 //    	{

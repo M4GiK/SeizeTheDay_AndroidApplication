@@ -13,9 +13,9 @@ public class Alarm extends BroadcastReceiver
 	@Override
 	public void onReceive(Context context, Intent intent) 
 	{
-        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "");
-        wl.acquire();
+    //    PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+    //    PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "");
+    //    wl.acquire();
 
         // Put here YOUR code.
         Toast.makeText(context, "Alarm !!!!!!!!!!", Toast.LENGTH_LONG).show(); // For example
@@ -23,7 +23,7 @@ public class Alarm extends BroadcastReceiver
         //todo remove me !
         Log.d("ok", "alarm");
         
-        wl.release();
+    //    wl.release();
 	}
 	
 }

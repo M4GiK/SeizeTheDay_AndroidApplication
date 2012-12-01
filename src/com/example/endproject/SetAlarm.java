@@ -19,8 +19,9 @@ public class SetAlarm extends Activity
 		setContentView(R.layout.set_alarm);
 	}
 	
-	public void press_set_alarm(View v)
+	public void bSetAlarmPressed(View v)
 	{
+		// get time form time picker
 		TimePicker tp = (TimePicker)findViewById(R.id.timePicker1);
 		int hour = tp.getCurrentHour();
 		int minute = tp.getCurrentMinute();
@@ -32,6 +33,7 @@ public class SetAlarm extends Activity
 		AlarmCal.set(Calendar.MINUTE, minute);
 		AlarmCal.set(Calendar.SECOND, 0);
 		
+		// set alarm
         AlarmManager am=(AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(getApplicationContext(), Alarm.class);
         PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 0, i, 0);

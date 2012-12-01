@@ -14,6 +14,6 @@ public class AddComponent extends Activity
 
 	public void buttonPressed(View v)
     {
-		
+		finish();
     }
 }

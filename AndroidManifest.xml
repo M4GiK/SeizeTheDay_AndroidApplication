@@ -6,11 +6,16 @@
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="15" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    
+    
 
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+    
+   
+        >
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
@@ -24,6 +29,9 @@
         </activity>
         <activity android:name=".SetAlarm" android:label="Set alarm">
         </activity>
+        <receiver  android:process=":remote" android:name="Alarm"></receiver>
+        
+        
         
     </application>
 

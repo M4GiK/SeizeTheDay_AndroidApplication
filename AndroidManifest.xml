@@ -25,11 +25,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddComponent" android:label="AddComponent!">
-        </activity>
+        <activity android:name=".AddComponent" android:label="AddComponent!"/>
         <activity android:name=".SetAlarm" android:label="Set alarm">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
-        <receiver  android:process=":remote" android:name="Alarm"></receiver>
+        <activity android:name=".CallAlarm" android:label="ddddddd"/>
+        <receiver android:name="Alarm" />
+
         
         
         

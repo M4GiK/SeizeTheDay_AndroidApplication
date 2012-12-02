@@ -14,7 +14,8 @@ import android.widget.ImageButton;
 public class MainActivity extends Activity 
 {	
 	
-	private static final int SHOW_CALCULATE_ACTIVITY = 1;
+	private static final int SHOW_SET_TIME_ACTIVITY = 1;
+	private BroadcastReceiver br;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -28,15 +29,33 @@ public class MainActivity extends Activity
     {
     	super.onStart();
         IntentFilter filter = new IntentFilter("MyAction");
-        registerReceiver(new BroadcastReceiver() {
+        br = new BroadcastReceiver() 
+        {
             @Override
-            public void onReceive(Context context, Intent intent) {
+            public void onReceive(Context context, Intent intent) 
+            {
                 Log.d("rrrrrr", "Yay.......");
                 abortBroadcast();
             }
+        };
+        
+        registerReceiver(br
+        , filter);
 
-        }, filter);
-
+    }
+    
+//    protected void onPause()
+//    {
+//    	
+//    }
+    
+    @Override
+    protected void onStop()
+    {
+    	unregisterReceiver(br);
+//        unregisterReceiver(sendBroadcastReceiver);
+//        unregisterReceiver(deliveryBroadcastReceiver);
+        super.onStop();
     }
     
     public void buttonPressed(View v)
@@ -48,14 +67,14 @@ public class MainActivity extends Activity
     public void add_button_pressed(View v)
     {
     	Intent i = new Intent(MainActivity.this,SetAlarm.class);    	
-    	startActivityForResult(i,SHOW_CALCULATE_ACTIVITY);
+    	startActivityForResult(i,SHOW_SET_TIME_ACTIVITY);
 
     }
     
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
     	switch(requestCode) {
-    		case SHOW_CALCULATE_ACTIVITY:
+    		case SHOW_SET_TIME_ACTIVITY:
     			if (resultCode == Activity.RESULT_OK) {
     				ImageButton b = (ImageButton) findViewById(R.id.imageButton1);
     				b.setImageResource(R.drawable.button_add_pressed);

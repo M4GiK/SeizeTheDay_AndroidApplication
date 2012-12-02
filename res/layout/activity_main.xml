@@ -33,5 +33,6 @@
         android:contentDescription="@string/Add"
         android:onClick="add_button_pressed"
         android:src="@drawable/button_add" />
+    
 
 </RelativeLayout>

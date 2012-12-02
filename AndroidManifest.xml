@@ -29,7 +29,7 @@
         </activity>
         <activity android:name=".SetAlarm" android:label="Set alarm">
         </activity>
-        <receiver  android:process=":remote" android:name="Alarm"></receiver>
+        <receiver android:name="Alarm" />
         
         
         

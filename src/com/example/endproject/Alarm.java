@@ -3,7 +3,6 @@ package com.example.endproject;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.PowerManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,11 +18,14 @@ public class Alarm extends BroadcastReceiver
 
         // Put here YOUR code.
         Toast.makeText(context, "Alarm !!!!!!!!!!", Toast.LENGTH_LONG).show(); // For example
-
         //todo remove me !
-        Log.d("ok", "alarm");
+        Log.d("Alarm - BroadcastReceiver", "Start new intent");
         
+       // unregisterReceiver(this);
+        Intent i = new Intent(context, MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(i);
+      
     //    wl.release();
 	}
-	
 }

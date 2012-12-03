@@ -39,7 +39,7 @@ public class SetAlarm extends Activity
         PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 0, i, 0);
         am.set(AlarmManager.RTC_WAKEUP, AlarmCal.getTimeInMillis(), pi);
         
-        //sent to mian activity info about it 
+        //sent to main activity info about it
         Intent intent = new Intent();
 		intent.putExtra("info",1);
 		setResult(RESULT_OK,intent);

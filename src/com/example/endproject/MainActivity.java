@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
 
 
 
@@ -53,12 +55,12 @@ public class MainActivity extends Activity
         // get data with rawQuery
         cursor = db.rawQuery("SELECT _id, hour, minute FROM timealarm ORDER BY hour DESC", null);
         
-//        // add data to adapter
-//     	ListAdapter adapter = new SimpleCursorAdapter(this,
-//     				R.layout.list_item, cursor,
-//     				new String[] {"hour", "minute"},		// from
-//     				new int[] {R.id.hour, R.id.minute});   // to
-//     	
+        // add data to adapter
+     	ListAdapter adapter = new SimpleCursorAdapter(this,
+     				R.layout.list_item, cursor,
+     				new String[] {"hour", "minute"},		// from
+     				new int[] {R.id.hour, R.id.minute});   // to
+     	
 //     	// show data in listView
 //     	setListAdapter(adapter);
 //     		

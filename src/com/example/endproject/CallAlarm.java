@@ -1,6 +1,8 @@
 package com.example.endproject;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.View;
 public class CallAlarm extends Activity 
 {
 	private String path;
+    MediaPlayer mp;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -16,10 +19,32 @@ public class CallAlarm extends Activity
 		Bundle extras = getIntent().getExtras();
 	    path = extras.getString("path");
 	    Log.d("m",path);
-	}
+	    
+
+	    
+      mp = MediaPlayer.create(CallAlarm.this,R.raw.guns_n_roses_better);
+      mp.setOnCompletionListener(new OnCompletionListener() {
+
+		public void onCompletion(MediaPlayer mp) {
+			// TODO Auto-generated method stub
+			mp.release();
+		}
+    	  
+      });
+      mp.start();
 	
+	}
+	    
 	public void bClosePressed(View v)
 	{
+		mp.stop();
 		finish();
+	}
+	
+	protected void onPause()
+	{
+		super.onPause();
+		mp.stop();
+//		finish();
 	}
 }

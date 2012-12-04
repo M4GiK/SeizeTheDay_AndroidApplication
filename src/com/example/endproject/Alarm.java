@@ -15,6 +15,6 @@ public class Alarm extends BroadcastReceiver
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.putExtra("path", "todo path to file");
         context.startActivity(i);
-        Log.d("Alarm - BroadcastReceiver", "Send action");
+        Log.d("Alarm - BroadcastReceiver", "Send action"); 
 	}
 }

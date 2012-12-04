@@ -2,21 +2,34 @@ package com.example.endproject;
 
 import java.util.Calendar;
 
+import com.example.endproject.database.DatabaseHelper;
+
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TimePicker;
 
 public class SetAlarm extends Activity
 {
+	private static final String TABLE = "timealarm";
+	private SQLiteDatabase db;
+	private Cursor cursor;
+	
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.set_alarm);
+		
+		db = (new DatabaseHelper(this)).getWritableDatabase();
+        String[] resultColumns = new String[]{"_id","hour","minute"};
+        cursor = db.query(TABLE,resultColumns,null,null,null,null,null);
 	}
 	
 	public void bSetAlarmPressed(View v)
@@ -39,12 +52,15 @@ public class SetAlarm extends Activity
         PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 0, i, 0);
         am.set(AlarmManager.RTC_WAKEUP, AlarmCal.getTimeInMillis(), pi);
         
-        //sent to main activity info about it
-        Intent intent = new Intent();
-		intent.putExtra("info",1);
-		setResult(RESULT_OK,intent);
+        //write information to data base
+        ContentValues values=new ContentValues(2);
+		values.put("minute", minute);
+		values.put("hour", hour);
+		db.insert(TABLE, null, values);
+		cursor.requery();
+//		Log.d("db","insert new row");
+        
 		finish();
-		
 	}
 	
 	// test it!
@@ -60,4 +76,11 @@ public class SetAlarm extends Activity
     {
 		finish();
     }
+	
+    @Override
+	public void onDestroy() {
+		super.onDestroy();
+		cursor.close();
+		db.close();
+	}
 }

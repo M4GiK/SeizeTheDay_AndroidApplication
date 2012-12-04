@@ -11,6 +11,7 @@ public class CallAlarm extends Activity
 {
 	private String path;
     MediaPlayer mp;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -22,12 +23,12 @@ public class CallAlarm extends Activity
 	    
 
 	    
-      mp = MediaPlayer.create(CallAlarm.this,R.raw.guns_n_roses_better);
+      mp = MediaPlayer.create(CallAlarm.this,R.raw.ring);
       mp.setOnCompletionListener(new OnCompletionListener() {
 
-		public void onCompletion(MediaPlayer mp) {
-			// TODO Auto-generated method stub
-			mp.release();
+		public void onCompletion(MediaPlayer mp) 
+		{
+			mp.start();
 		}
     	  
       });
@@ -45,6 +46,5 @@ public class CallAlarm extends Activity
 	{
 		super.onPause();
 		mp.stop();
-//		finish();
 	}
 }

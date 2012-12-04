@@ -39,7 +39,7 @@ public final class R {
         public static final int activity_main=0x7f070000;
     }
     public static final class raw {
-        public static final int guns_n_roses_better=0x7f040000;
+        public static final int ring=0x7f040000;
     }
     public static final class string {
         public static final int Add=0x7f050003;

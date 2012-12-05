@@ -11,10 +11,20 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int button_add=0x7f020000;
-        public static final int button_add_pressed=0x7f020001;
-        public static final int ic_action_search=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
+        public static final int alarm=0x7f020000;
+        public static final int alarm_pressed=0x7f020001;
+        public static final int appbar_delete_rest=0x7f020002;
+        public static final int application_icon=0x7f020003;
+        public static final int arrow=0x7f020004;
+        public static final int backgorund=0x7f020005;
+        public static final int background=0x7f020006;
+        public static final int button_add=0x7f020007;
+        public static final int button_add_pressed=0x7f020008;
+        public static final int button_minus=0x7f020009;
+        public static final int button_minus_pressed=0x7f02000a;
+        public static final int ic_action_search=0x7f02000b;
+        public static final int ic_launcher=0x7f02000c;
+        public static final int splash_screen_image=0x7f02000d;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f080000;

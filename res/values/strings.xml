@@ -10,5 +10,7 @@
 	<string name="button_text_weather">Weather component</string>
 	<string name="button_text_cancel">Cancel</string>
 	<string name="set_alarm">Set Alarm</string>
+	<string name="close">Close</string>
+	<string name="trash">Trash</string>
 
 </resources>

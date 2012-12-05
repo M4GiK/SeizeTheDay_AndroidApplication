@@ -7,10 +7,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity 
@@ -53,20 +53,32 @@ public class MainActivity extends Activity
     
     private void setAlarm()
     {
-    	Log.d("alarm","none");
+//    	Log.d("alarm","none");
     	
     	ImageButton b = (ImageButton) findViewById(R.id.imageButton1);
 		b.setImageResource(R.drawable.button_add);
 		b.setEnabled(true);
+		
+		b = (ImageButton) findViewById(R.id.imageButton2);
+		b.setVisibility(View.INVISIBLE);
+		
+		TextView t = (TextView) findViewById(R.id.textView1);
+		t.setText(null);
     }
     
     private void setAlarm(int hour, int min)
     {
-    	Log.d("alarm","yes ->"+hour+" min"+min);
+//    	Log.d("alarm","yes ->"+hour+" min"+min+" ");
     	
     	ImageButton b = (ImageButton) findViewById(R.id.imageButton1);
-		b.setImageResource(R.drawable.button_add_pressed);
+		b.setImageResource(R.drawable.alarm_pressed);
 		b.setEnabled(false);
+		
+		b = (ImageButton) findViewById(R.id.imageButton2);
+		b.setVisibility(View.VISIBLE);
+		
+		TextView t = (TextView) findViewById(R.id.textView1);
+		t.setText(hour+":"+min);
     }
   
     @Override
@@ -88,6 +100,19 @@ public class MainActivity extends Activity
     {
     	Intent i = new Intent(MainActivity.this,SetAlarm.class);    	
     	startActivity(i);
+    }
+    
+    public void removeAlarm(View v)
+    {
+//    	Log.d("c","cancel alarm call");
+    	SetAlarm a = new SetAlarm();
+    	a.CancelAlarm(this);
+    	
+		// remove from db data
+		db.delete(TABLE, null, null);
+		
+		//off buttons 
+		setAlarm();
     }
  
     @Override

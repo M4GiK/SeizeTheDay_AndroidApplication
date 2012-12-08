@@ -55,7 +55,7 @@ public class TaskManager extends Activity
 	
 	public void refreshView()
 	{
-//		ListView lw = findViewById(R.id.listView1);
+		ListView lw = (ListView) findViewById(R.id.listView1);
 //		lw.add
 	}
 }

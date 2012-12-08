@@ -21,4 +21,12 @@
         android:layout_below="@+id/analogClock1" >
     </ListView>
 
+    <ListView
+        android:id="@+id/listAphorism"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@android:id/list" >
+    </ListView>
+
 </RelativeLayout>

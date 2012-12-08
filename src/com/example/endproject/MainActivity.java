@@ -1,5 +1,7 @@
 package com.example.endproject;
 
+import java.util.ArrayList;
+
 import com.example.endproject.database.DatabaseHelper;
 
 import android.os.Bundle;
@@ -9,17 +11,33 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
 public class MainActivity extends Activity 
 {	
 	private static final String TABLE = "timealarm";
-	/** Object using to connect with database. */
+	
+	/**
+	 * Static field to define name in table
+	 */
+	private static final String TABLE_COMPONENT = "component";
+
+	/**
+	 * Object need to connect with database
+	 */
 	private SQLiteDatabase db;
-	/** Object using to moved in database. */
+
+	/**
+	 * Object using to moved in database.
+	 */
 	private Cursor cursor;
+
+	
+	private Cursor cursor2;
 		
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -32,6 +50,27 @@ public class MainActivity extends Activity
         
         // get data with rawQuery
         cursor = db.rawQuery("SELECT _id, hour, minute FROM timealarm ORDER BY hour DESC", null);
+        
+        String[] resultColumns = new String[] { "_id", "item", "data" };
+        
+        cursor2 = db.query(TABLE_COMPONENT, resultColumns, null , null, null, null, null);
+        ListView list;
+
+		list = (ListView) findViewById(R.id.listViewComponents);
+
+		ArrayList<String> componentsList = new ArrayList<String>();
+				
+		startManagingCursor(cursor2);
+		
+		// loop through cursor 
+		while(cursor2.moveToNext()) {
+		    componentsList.add(cursor2.getString(cursor2.getColumnIndex("item")));
+		}
+		
+		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, componentsList);
+		
+		list.setAdapter(arrayAdapter);
     }
     
     @Override

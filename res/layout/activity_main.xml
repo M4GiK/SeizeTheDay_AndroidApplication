@@ -55,4 +55,12 @@
         android:onClick="removeAlarm"
         android:src="@drawable/button_trash" />
 
+    <ListView
+        android:id="@+id/listViewComponents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button" >
+    </ListView>
+
 </RelativeLayout>

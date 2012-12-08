@@ -12,6 +12,7 @@
 	<string name="set_alarm">Set Alarm</string>
 	<string name="close">Close</string>
 	<string name="trash">Trash</string>
-	<string name="button_text_news">News Component</string>
+	<string name="button_text_news">News component</string>
+	<string name="button_text_aphorism">Aphorism component</string>
 
 </resources>

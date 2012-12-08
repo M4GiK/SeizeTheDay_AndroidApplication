@@ -107,7 +107,7 @@ public class CallAlarm extends ListActivity {
 		setContentView(R.layout.call_alarm);
 		
 		db = (new DatabaseHelper(this)).getWritableDatabase();
-
+		
 		//-------------------------------------ALARM--------------------------------------------//
 		alarm();
 		//-------------------------------------NEWS---------------------------------------------//
@@ -118,8 +118,53 @@ public class CallAlarm extends ListActivity {
 
 	
 	
+	/**
+	 * This method call aphorism when activity is started.
+	 */
 	private void aphorism() {
-		// TODO Auto-generated method stub
+		
+		String[] resultColumns = new String[] { "_id", "item", "data" };
+
+		cursor = db.query(TABLE_COMPONENT, resultColumns, "item=?" , new String[]{"aphorism"}, null, null, null);
+		
+		ArrayList<HashMap<String, String>> menuItems = new ArrayList<HashMap<String, String>>();
+
+		XMLParser parser = new XMLParser();
+		
+		String xml = new String();
+		
+		if (cursor.moveToFirst()) {
+			xml = parser.getXmlFromUrl(cursor.getString(cursor.getColumnIndex("data")));	 // Getting XML.
+		}
+		
+		Document doc = parser.getDomElement(xml); 											// Getting DOM element.
+
+		NodeList nl = doc.getElementsByTagName(KEY_ITEM);
+		
+		// Looping through all item nodes <item>.
+		for (int i = 0; i < 1; i++) {
+			
+			// Creating new HashMap.
+			HashMap<String, String> map = new HashMap<String, String>();
+			
+			Element e = (Element) nl.item(i);
+			
+			// Adding each child node to HashMap key => value.
+			map.put(KEY_NAME, parser.getValue(e, KEY_NAME));
+			map.put(KEY_TITLE,parser.getValue(e, KEY_TITLE));
+			map.put(KEY_DESC, parser.getValue(e, KEY_DESC));
+
+			// adding HashList to ArrayList
+			menuItems.add(map);
+		}
+
+		// Adding menuItems to ListView.
+		ListAdapter adapter = new SimpleAdapter(this, menuItems,
+				R.layout.list_item,
+				new String[] { KEY_TITLE, KEY_DESC}, new int[] {
+						R.id.title, R.id.description });
+
+		setListAdapter(adapter);
 		
 	}
 

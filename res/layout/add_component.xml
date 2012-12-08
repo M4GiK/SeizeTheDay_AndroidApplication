@@ -6,19 +6,28 @@
 	android:layout_height="fill_parent"
 	>
 	<Button
-		android:id="@+id/button"
+		android:id="@+id/button_weather"
 		android:layout_width = "fill_parent"
 		android:layout_height = "wrap_content"
         android:text="@string/button_text_weather" 
 
 	/>
+	
+	<Button
+		android:id="@+id/button_news"
+		android:layout_width = "fill_parent"
+		android:layout_height = "wrap_content"
+        android:text="@string/button_text_news" 
+        android:onClick="newsClicked"
+
+	/>
 
 	<Button
-	    android:id="@+id/button1"
+	    android:id="@+id/button_cancel"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:text="@string/button_text_cancel"
-	  	android:onClick="buttonPressed"
-	/>
+	    android:onClick="buttonPressed"
+	    android:text="@string/button_text_cancel" 
+	    android:layout_marginTop="250dp" />
 
 </LinearLayout>

@@ -1,19 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="horizontal"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		>
-	<TextView
-			android:id="@+id/hour"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_alignParentLeft="true"
-			/>
-	<TextView
-			android:id="@+id/minute"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content" 
-			android:layout_alignParentRight="true"
-			/>
-</RelativeLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <!-- Title Label -->
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dip"
+            android:paddingTop="6dip"
+            android:textColor="#dc6800"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+        
+        <!-- Description label -->
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dip">
+        </TextView>
+        
+        <!-- Linear layout for link -->
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            
+            <!-- Link Label -->
+
+            <TextView
+                android:id="@+id/link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="8sp">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -53,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		// Create a new table for components
 		db.execSQL("CREATE TABLE " + DATABASE_TABLE_COMPONENT + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + ITEM + " VARCHAR(25), " + DATA + " VARCHAR(255) );");
-				
+
 	}	
 
 	

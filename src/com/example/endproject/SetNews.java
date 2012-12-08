@@ -40,19 +40,15 @@ public class SetNews extends Activity {
 	 */
 	private Cursor cursor;
 
+		
+	
 	/**
 	 * Constructor. Initialize elements with database.
 	 */
-	public SetNews() {
+	public SetNews() {}
 
-		db = (new DatabaseHelper(this)).getWritableDatabase();
-
-		String[] resultColumns = new String[] { "_id", "item", "data" };
-
-		cursor = db.query(TABLE, resultColumns, "item=?" , new String[]{""}, null, null, null);
-
-	}
-
+		
+	
 	/**
 	 * This method initialize all part to save selected category. Called when
 	 * the activity is starting. This is where most initialization should go:
@@ -70,6 +66,12 @@ public class SetNews extends Activity {
 
 		setContentView(R.layout.set_news);
 
+		db = (new DatabaseHelper(this)).getWritableDatabase();
+		
+		String[] resultColumns = new String[] { "_id", "item", "data" };
+		
+		cursor = db.query(TABLE, resultColumns, "item=?" , new String[]{"news"}, null, null, null);
+		
 		ListView list;
 
 		list = (ListView) findViewById(R.id.list_news);
@@ -102,7 +104,7 @@ public class SetNews extends Activity {
 				
 				if (cursor != null) {
 					// Removing from database 
-					db.delete(TABLE, "item=news", null);
+					db.delete(TABLE, "item=?", new String[]{"news"});
 				}
 				
 				if (category.equals("World")) {			

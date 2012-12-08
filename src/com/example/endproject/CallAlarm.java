@@ -86,11 +86,7 @@ public class CallAlarm extends ListActivity {
 	/**
 	 * Constructor. Initialize database helper.
 	 */
-	public CallAlarm() {
-		
-		db = (new DatabaseHelper(this)).getWritableDatabase();
-		
-	}
+	public CallAlarm() {}
 	
 	
 	/**
@@ -109,6 +105,8 @@ public class CallAlarm extends ListActivity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.call_alarm);
+		
+		db = (new DatabaseHelper(this)).getWritableDatabase();
 
 		//-------------------------------------ALARM--------------------------------------------//
 		alarm();
@@ -139,8 +137,14 @@ public class CallAlarm extends ListActivity {
 		ArrayList<HashMap<String, String>> menuItems = new ArrayList<HashMap<String, String>>();
 
 		XMLParser parser = new XMLParser();
-		String xml = parser.getXmlFromUrl(cursor.getString(1)); 	// Getting XML.
-		Document doc = parser.getDomElement(xml); 					// Getting DOM element.
+		
+		String xml = new String();
+		
+		if (cursor.moveToFirst()) {
+			xml = parser.getXmlFromUrl(cursor.getString(cursor.getColumnIndex("data")));	 // Getting XML.
+		}
+		
+		Document doc = parser.getDomElement(xml); 											// Getting DOM element.
 
 		NodeList nl = doc.getElementsByTagName(KEY_ITEM);
 		
@@ -170,7 +174,7 @@ public class CallAlarm extends ListActivity {
 
 		setListAdapter(adapter);
 
-		// Selecting single ListView item
+		// Selecting single ListView item.
 		ListView lv = getListView();
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -179,13 +183,14 @@ public class CallAlarm extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				
-				// Getting values from selected ListItem
+				// Getting values from selected ListItem.
 				Uri uriUrl = Uri.parse(((TextView) view.findViewById(R.id.link))
 						.getText().toString());
 
-				// Starting new intent
+				// Starting new intent.
 				Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
 				
+				// Start link in browser.
 				startActivity(launchBrowser);
 
 			}

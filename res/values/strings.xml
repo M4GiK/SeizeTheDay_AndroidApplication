@@ -12,5 +12,6 @@
 	<string name="set_alarm">Set Alarm</string>
 	<string name="close">Close</string>
 	<string name="trash">Trash</string>
+	<string name="task_manager">Task Manager</string>
 
 </resources>

@@ -15,6 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private static final String DATABASE_NAME = "SeizeDay_database";
 	private static final String DATABASE_TABLE = "timealarm";
+	private static final String TABLE_TASK = "tasks";
 	private static final String HOUR = "hour";
 	private static final String MINUTE = "minute";
 	
@@ -26,12 +27,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * @param context
 	 */
 	public DatabaseHelper(Context context) {
-		
 		// Context, database name, optional cursor factory, database version
-		super(context, DATABASE_NAME, null, 1);
-		
+		super(context, DATABASE_NAME, null, 2);
 	}
-	
 	
 	
 	/**
@@ -47,6 +45,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		// Create a new table
 		db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + HOUR + " INTEGER, " + MINUTE + " INTEGER);");
+		db.execSQL("CREATE TABLE " + TABLE_TASK + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT, task_text TEXT ); ");
+		
+		Log.d("db","Create new table is call");
 		
 //		// Create some data
 //		ContentValues values = new ContentValues();

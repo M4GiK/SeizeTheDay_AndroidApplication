@@ -21,13 +21,41 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * This class is responsible for adding new task to database and displaying on list.
+ * 
+ * @author Seize the Day
+ *
+ */
 public class TaskManager extends Activity
 {
-	private SQLiteDatabase db;
-	private Cursor cursor;
-	
+	/**
+	 * Static field to define name in table
+	 */
 	private static final String TABLE_TASK = "tasks";
 	
+	/**
+	 * Variable need to get access to database.
+	 */
+	private SQLiteDatabase db;
+	
+	/**
+	 * Object using to moved in database.
+	 */
+	private Cursor cursor;
+	
+	
+	
+	/**
+	 * Called when the activity is starting. This is where most initialization
+	 * should go: calling setContentView(int) to inflate the activity's UI,
+	 * using findViewById(int) to programmatically interact with widgets in the
+	 * UI, calling managedQuery(android.net.Uri, String[], String, String[],
+	 * String) to retrieve cursors for data being displayed, etc.
+	 * 
+	 * @param savedInstanceState
+	 *            - Bundle
+	 */
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
@@ -38,6 +66,8 @@ public class TaskManager extends Activity
         cursor = db.query(TABLE_TASK,resultColumns,null,null,null,null,null);
 	}
 	
+	
+	
 	/**
 	 * refresh view if activity is come back from the background.
 	 */
@@ -46,6 +76,8 @@ public class TaskManager extends Activity
 		super.onResume();
 		refreshView();
 	}
+	
+	
 	
 	/**
 	 * pressed add button. Write data to data base.
@@ -68,6 +100,8 @@ public class TaskManager extends Activity
 		cursor.requery();
 		refreshView();
 	}
+	
+	
 	
 	/**
 	 * Print all data in ListView. Get data form database.

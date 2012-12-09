@@ -16,12 +16,41 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TimePicker;
 
+/**
+ * This class is responsible for setting alarm. 
+ * 
+ * @author Seize the Day
+ *
+ */
 public class SetAlarm extends Activity
 {
+	/**
+	 * Static field to define name in table
+	 */
 	private static final String TABLE = "timealarm";
+	
+	/**
+	 * Variable need to get access to database.
+	 */
 	private SQLiteDatabase db;
+	
+	/**
+	 * Object using to moved in database.
+	 */
 	private Cursor cursor;
 	
+	
+	
+	/**
+	 * Called when the activity is starting. This is where most initialization
+	 * should go: calling setContentView(int) to inflate the activity's UI,
+	 * using findViewById(int) to programmatically interact with widgets in the
+	 * UI, calling managedQuery(android.net.Uri, String[], String, String[],
+	 * String) to retrieve cursors for data being displayed, etc.
+	 * 
+	 * @param savedInstanceState
+	 *            - Bundle
+	 */
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
@@ -31,6 +60,8 @@ public class SetAlarm extends Activity
         String[] resultColumns = new String[]{"_id","hour","minute"};
         cursor = db.query(TABLE,resultColumns,null,null,null,null,null);
 	}
+	
+	
 	
 	/**
 	 * Method send information about alarm to database, also information is send to
@@ -67,6 +98,8 @@ public class SetAlarm extends Activity
 		finish();
 	}
 	
+	
+	
 	/**
 	 * Method remove time from Android AlarmManager object. 
 	 * @param context
@@ -79,6 +112,8 @@ public class SetAlarm extends Activity
         alarmManager.cancel(sender);
     }
 	
+    
+    
     /**
      * Cancel button is pressed.
      * @param v
@@ -88,6 +123,11 @@ public class SetAlarm extends Activity
 		finish();
     }
 	
+	
+	
+	/**
+	 * Close database connection after close application.
+	 */
     @Override
 	public void onDestroy() {
 		super.onDestroy();

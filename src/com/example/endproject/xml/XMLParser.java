@@ -23,6 +23,12 @@ import org.xml.sax.SAXException;
 
 import android.util.Log;
 
+/**
+ * This class is responsible for parsing data from web.
+ * 
+ * @author Seize the Day
+ *
+ */
 public class XMLParser {
 
 	/**

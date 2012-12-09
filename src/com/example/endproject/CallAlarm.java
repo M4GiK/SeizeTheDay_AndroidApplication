@@ -128,7 +128,7 @@ public class CallAlarm extends Activity {
 			// Disable from list
 			ListView list;
 			list = (ListView) findViewById(R.id.listNews);
-			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 100));	
+			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 200));	
 			
 			TextView text;
 			text = (TextView) findViewById(R.id.textNews);
@@ -383,6 +383,8 @@ public class CallAlarm extends Activity {
 
 
 	/**
+	 * Method call when the application will be close.
+	 * Stops playing music.
 	 * 
 	 * @param v
 	 *            - View
@@ -395,8 +397,10 @@ public class CallAlarm extends Activity {
 	
 	
 	/**
+	 * This method stopped playing music 
 	 * 
 	 * @param v
+	 * 			 - View
 	 */
 	public void bOffAlaemPressed(View v) {
 		mp.stop();
@@ -407,6 +411,9 @@ public class CallAlarm extends Activity {
 	
 	
 	/**
+	 * Called as part of the activity lifecycle when an activity 
+	 * is going into the background, but has not (yet) been killed. 
+	 * The counterpart to onResume().
 	 * 
 	 */
 	protected void onPause() {
@@ -417,7 +424,7 @@ public class CallAlarm extends Activity {
 	
 	
 	/**
-	 * 
+	 * Close database connection after close application.
 	 */
 	@Override
 	public void onDestroy() {

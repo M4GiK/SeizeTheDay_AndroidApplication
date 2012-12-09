@@ -8,13 +8,35 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * This class is responsible for removing component from database.
+ * 
+ * @author Seize the Day
+ *
+ */
 public class RemoveFromDB extends Activity
 {
-	
+	/**
+	 * Variable need to get access to database.
+	 */
 	private SQLiteDatabase db;
+	
+	/**
+	 * Variable need to get name from database.
+	 */
 	private String table;
+	
+	/**
+	 * Variable need to get id.
+	 */
 	private int id;
+	
+	/**
+	 * Variable need to show message.
+	 */
 	private String message;
+	
+	
 	
 	/**
 	 * Create form and fill text view remove information. Also save id and table indormation.
@@ -35,6 +57,8 @@ public class RemoveFromDB extends Activity
 		tv.setText(message);
 	}
 	
+	
+	
 	/**
 	 * Cancel button pressed
 	 * @param v
@@ -43,6 +67,8 @@ public class RemoveFromDB extends Activity
 	{
 		finish();
 	}
+	
+	
 	
 	/**
 	 * Remove button is pressed. Remove specivic id form table.
@@ -55,6 +81,8 @@ public class RemoveFromDB extends Activity
 		db.delete(table, "_id=?", ids);		
 		finish();
 	}
+	
+	
 	
 	/**
 	 * Close database connection.

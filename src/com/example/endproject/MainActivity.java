@@ -20,7 +20,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-
+/**
+ * This class representation the application core.
+ * 
+ * @author Seize the Day
+ *
+ */
 public class MainActivity extends Activity 
 {	
 	/**
@@ -73,11 +78,13 @@ public class MainActivity extends Activity
         
     }
     
-    @Override
+    
+    
     /**
      * Check if alarm clock is set. Paint correct form.
      * Print all selected components.
      */
+    @Override
     protected void onResume()
     {
     	super.onResume();
@@ -125,9 +132,7 @@ public class MainActivity extends Activity
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
-			{
-//				Log.d(":)",""+((TextView) view.findViewById(R.id.task)).getText().toString());
-				
+			{		
 		        Intent i = new Intent(context, RemoveFromDB.class);
 		        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		        i.putExtra("db_name",TABLE_COMPONENT);
@@ -138,6 +143,8 @@ public class MainActivity extends Activity
 			
 		});
     }
+    
+    
     
     /**
      * Off all buttons to set alarm
@@ -155,15 +162,15 @@ public class MainActivity extends Activity
 		t.setText(null);
     }
     
+    
+    
     /**
      * Turn on all buttons to set alarm. Also print all informations text and graphics.
-     * @param hour
-     * @param min
+     * @param hour - int
+     * @param min	- int
      */
     private void setAlarm(int hour, int min)
-    {
-//    	Log.d("alarm","yes ->"+hour+" min"+min+" ");
-    	
+    { 	
     	ImageButton b = (ImageButton) findViewById(R.id.imageButton1);
 		b.setImageResource(R.drawable.alarm_pressed);
 		b.setEnabled(false);
@@ -175,18 +182,20 @@ public class MainActivity extends Activity
 		t.setText(hour+":"+min);
     }
   
-    @Override
+    
+    
     /**
      * Close database connection.
      */
-	public void onDestroy() {
-    	
+    @Override
+	public void onDestroy() {  	
 		super.onDestroy();
 		cursor.close();
-		db.close();
-		
+		db.close();	
 	}
        
+    
+    
     /**
      * Show add component window.
      * @param v
@@ -197,6 +206,8 @@ public class MainActivity extends Activity
     	startActivity(i);
     }
     
+    
+    
     /**
      * Show set alarm window
      * @param v
@@ -206,6 +217,8 @@ public class MainActivity extends Activity
     	Intent i = new Intent(MainActivity.this,SetAlarm.class);    	
     	startActivity(i);
     }
+    
+    
     
     /**
      * Remove alarm. Drop data form database and terminate alarm from Android AlarmManager object.

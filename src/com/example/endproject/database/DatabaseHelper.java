@@ -55,23 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE " + DATABASE_TABLE_COMPONENT + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + ITEM + " VARCHAR(25), " + DATA + " VARCHAR(255) );");
 		
 		Log.d("db","Create new table is call");
-		
-//		// Create some data
-//		ContentValues values = new ContentValues();
-//		
-//		values.put(HOUR, 12);
-//		values.put(MINUTE, 20);
-//		
-//		// Insert data to database, name of table, values
-//		db.insert(DATABASE_TABLE, null, values);
-//		
-//		// Create some data
-//		values.put(HOUR, 11);
-//		values.put(MINUTE, 30);
-//		
-//		// Insert data to database, name of table, values
-//		db.insert(DATABASE_TABLE, null, values);
-		
+				
 	}	
 
 	

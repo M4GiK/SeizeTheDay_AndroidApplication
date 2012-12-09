@@ -153,7 +153,7 @@ public class CallAlarm extends Activity {
 		startManagingCursor(cursor);
 		
 		// loop through cursor 
-		while(cursor.moveToNext()) {
+		for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
 		    if( (cursor.getString(cursor.getColumnIndex("item"))).equals(item) ) {
 		    	return true;
 		    }

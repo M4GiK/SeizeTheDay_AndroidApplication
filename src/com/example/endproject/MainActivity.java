@@ -1,20 +1,27 @@
 package com.example.endproject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.example.endproject.database.DatabaseHelper;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 
 public class MainActivity extends Activity 
@@ -75,20 +82,45 @@ public class MainActivity extends Activity
         ListView list;
 
 		list = (ListView) findViewById(R.id.listViewComponents);
-
-		ArrayList<String> componentsList = new ArrayList<String>();
-				
-		startManagingCursor(cursor2);
 		
-		// loop through cursor 
-		while(cursor2.moveToNext()) {
-		    componentsList.add(cursor2.getString(cursor2.getColumnIndex("item")));
+		ArrayList<HashMap<String, String>> menuItems = new ArrayList<HashMap<String, String>>();		
+		
+		for(cursor2.moveToFirst(); !cursor2.isAfterLast(); cursor2.moveToNext()) 
+		{
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("task_id",new String( cursor2.getString(0)));
+			map.put("task",new String (cursor2.getString(1)));
+
+			// adding HashList to ArrayList
+			menuItems.add(map);	
+//			Log.d("db",""+cursor2.getString(0)+cursor2.getString(1));
 		}
 		
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, componentsList);
 		
-		list.setAdapter(arrayAdapter);
+		ListAdapter adapter = new SimpleAdapter(this, menuItems,
+				R.layout.task_item,
+				new String[] { "task_id", "task"}, new int[] {
+						R.id.task_id, R.id.task });
+
+		list.setAdapter(adapter);
+		
+		final Context context = this;
+		
+		list.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
+			{
+//				Log.d(":)",""+((TextView) view.findViewById(R.id.task)).getText().toString());
+				
+		        Intent i = new Intent(context, RemoveFromDB.class);
+		        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		        i.putExtra("db_name",TABLE_COMPONENT);
+		        i.putExtra("id",Integer.parseInt(((TextView) view.findViewById(R.id.task_id)).getText().toString()));
+		        i.putExtra("message","Do you want remove '"+((TextView) view.findViewById(R.id.task)).getText().toString()+"' from start up window?");
+		        context.startActivity(i);
+			}
+			
+		});
     }
     
     private void setAlarm()

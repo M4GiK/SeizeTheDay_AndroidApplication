@@ -93,7 +93,7 @@ public class AddComponent extends Activity {
 		}
 		
 		values.put("item", "aphorism");
-		values.put("data", "http://www.inspirationline.com/inspirationline.xml");	
+		values.put("data", "http://www.inspirational-quotes-and-quotations.com/inspirational-quotes-and-quotations.xml");	
 		
 		db.insert(TABLE, null, values);
 		cursor.requery();

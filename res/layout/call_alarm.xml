@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="500dp" 
     android:background="@drawable/backgorund"
-
+    android:id="@+id/layout"
     >
 
     <AnalogClock
@@ -24,9 +24,9 @@
     <ListView
         android:id="@+id/listAphorism"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@android:id/list" >
+        android:layout_below="@+id/listNews" >
     </ListView>
 
 </RelativeLayout>

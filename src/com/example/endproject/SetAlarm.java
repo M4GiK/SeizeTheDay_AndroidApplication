@@ -32,6 +32,12 @@ public class SetAlarm extends Activity
         cursor = db.query(TABLE,resultColumns,null,null,null,null,null);
 	}
 	
+	/**
+	 * Method send information about alarm to database, also information is send to
+	 * Android AlarmManager object. Alarm manager send message in right time.
+	 * BroadcastReciver (class Alarm) take this message.
+	 * @param v
+	 */
 	public void bSetAlarmPressed(View v)
 	{
 		// get time form time picker
@@ -58,12 +64,13 @@ public class SetAlarm extends Activity
 		values.put("hour", hour);
 		db.insert(TABLE, null, values);
 		cursor.requery();
-//		Log.d("db","insert new row");
-        
 		finish();
 	}
 	
-	// test it!
+	/**
+	 * Method remove time from Android AlarmManager object. 
+	 * @param context
+	 */
     public void CancelAlarm(Context context)
     {
         Intent intent = new Intent(context, Alarm.class);
@@ -72,6 +79,10 @@ public class SetAlarm extends Activity
         alarmManager.cancel(sender);
     }
 	
+    /**
+     * Cancel button is pressed.
+     * @param v
+     */
 	public void bCancelPressed(View v)
     {
 		finish();

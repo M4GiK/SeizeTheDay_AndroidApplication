@@ -8,6 +8,9 @@ public class Alarm extends BroadcastReceiver
 {
 
 	@Override
+	/**
+	 * Catch message form Android AlarmManager object.
+	 */
 	public void onReceive(Context context, Intent intent) 
 	{       
         Intent i = new Intent(context, CallAlarm.class);

@@ -74,8 +74,12 @@ public class AddComponent extends Activity {
 		
 	}
 
-	
-	
+	public void bTaskManagerPresssed(View v)
+	{
+		Intent i = new Intent(this,TaskManager.class);
+		startActivity(i);
+	}
+
 	/**
 	 * This method moves to new activity.
 	 * 

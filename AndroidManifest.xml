@@ -37,6 +37,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CallAlarm" android:label="Alarm"/>
+        <activity android:name=".TaskManager" android:label="Task Manager"/>
         <receiver android:name="Alarm" />
 
         

@@ -16,6 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "SeizeDay_database";
 	private static final String DATABASE_TABLE = "timealarm";
 	private static final String DATABASE_TABLE_COMPONENT = "component";
+	private static final String TABLE_TASK = "tasks";
 	private static final String HOUR = "hour";
 	private static final String MINUTE = "minute";
 	private static final String ITEM = "item";
@@ -31,8 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public DatabaseHelper(Context context) {
 		
 		// Context, database name, optional cursor factory, database version
-		super(context, DATABASE_NAME, null, 1);
-		
+		super(context, DATABASE_NAME, null, 5);
 	}
 	
 	
@@ -48,12 +48,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		
-		// Create a new table for alarm
+		// Create a new table
 		db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + HOUR + " INTEGER, " + MINUTE + " INTEGER);");
-		
+		db.execSQL("CREATE TABLE " + TABLE_TASK + " ( _id INTEGER PRIMARY KEY AUTOINCREMENT, task_text TEXT ); ");
 		// Create a new table for components
 		db.execSQL("CREATE TABLE " + DATABASE_TABLE_COMPONENT + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + ITEM + " VARCHAR(25), " + DATA + " VARCHAR(255) );");
-
+		
+		Log.d("db","Create new table is call");
+		
+//		// Create some data
+//		ContentValues values = new ContentValues();
+//		
+//		values.put(HOUR, 12);
+//		values.put(MINUTE, 20);
+//		
+//		// Insert data to database, name of table, values
+//		db.insert(DATABASE_TABLE, null, values);
+//		
+//		// Create some data
+//		values.put(HOUR, 11);
+//		values.put(MINUTE, 30);
+//		
+//		// Insert data to database, name of table, values
+//		db.insert(DATABASE_TABLE, null, values);
+		
 	}	
 
 	
@@ -73,6 +91,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		Log.v("SQLite","Upgrading DB, all old data will be lost.");
 		db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASK);
+		db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE_COMPONENT);
+		
 		onCreate(db);
 		
 	}

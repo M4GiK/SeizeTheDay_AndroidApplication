@@ -14,5 +14,6 @@
 	<string name="trash">Trash</string>
 	<string name="button_text_news">News component</string>
 	<string name="button_text_aphorism">Aphorism component</string>
+	<string name="task_manager">Task Manager</string>
 
 </resources>

@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -75,6 +74,10 @@ public class MainActivity extends Activity
     }
     
     @Override
+    /**
+     * Check if alarm clock is set. Paint correct form.
+     * Print all selected components.
+     */
     protected void onResume()
     {
     	super.onResume();
@@ -107,7 +110,6 @@ public class MainActivity extends Activity
 
 			// adding HashList to ArrayList
 			menuItems.add(map);	
-//			Log.d("db",""+cursor2.getString(0)+cursor2.getString(1));
 		}
 		
 		
@@ -137,10 +139,11 @@ public class MainActivity extends Activity
 		});
     }
     
+    /**
+     * Off all buttons to set alarm
+     */
     private void setAlarm()
     {
-//    	Log.d("alarm","none");
-    	
     	ImageButton b = (ImageButton) findViewById(R.id.imageButton1);
 		b.setImageResource(R.drawable.button_add);
 		b.setEnabled(true);
@@ -152,6 +155,11 @@ public class MainActivity extends Activity
 		t.setText(null);
     }
     
+    /**
+     * Turn on all buttons to set alarm. Also print all informations text and graphics.
+     * @param hour
+     * @param min
+     */
     private void setAlarm(int hour, int min)
     {
 //    	Log.d("alarm","yes ->"+hour+" min"+min+" ");
@@ -168,6 +176,9 @@ public class MainActivity extends Activity
     }
   
     @Override
+    /**
+     * Close database connection.
+     */
 	public void onDestroy() {
     	
 		super.onDestroy();
@@ -176,34 +187,39 @@ public class MainActivity extends Activity
 		
 	}
        
+    /**
+     * Show add component window.
+     * @param v
+     */
     public void buttonPressed(View v)
     {
     	Intent i = new Intent(MainActivity.this,AddComponent.class);
     	startActivity(i);
     }
     
+    /**
+     * Show set alarm window
+     * @param v
+     */
     public void add_button_pressed(View v)
     {
     	Intent i = new Intent(MainActivity.this,SetAlarm.class);    	
     	startActivity(i);
     }
     
+    /**
+     * Remove alarm. Drop data form database and terminate alarm from Android AlarmManager object.
+     * @param v
+     */
     public void removeAlarm(View v)
     {
-//    	Log.d("c","cancel alarm call");
     	SetAlarm a = new SetAlarm();
     	a.CancelAlarm(this);
     	
-		// remove from db data
 		db.delete(TABLE, null, null);
 		
 		//off buttons 
 		setAlarm();
     }
- 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
+
 }

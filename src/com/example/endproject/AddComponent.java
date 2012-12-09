@@ -74,6 +74,10 @@ public class AddComponent extends Activity {
 		
 	}
 
+	/**
+	 * Add task manager to component list. Make note in database about it. Also start new window. 
+	 * @param v
+	 */
 	public void bTaskManagerPresssed(View v)
 	{
 		String[] resultColumns = new String[]{"_id","item"};

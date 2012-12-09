@@ -38,6 +38,9 @@ public class TaskManager extends Activity
         cursor = db.query(TABLE_TASK,resultColumns,null,null,null,null,null);
 	}
 	
+	/**
+	 * refresh view if activity is come back from the background.
+	 */
 	protected void onResume()
 	{
 		super.onResume();
@@ -63,10 +66,12 @@ public class TaskManager extends Activity
 		values.put("task_text", data);
 		db.insert(TABLE_TASK, null, values);
 		cursor.requery();
-//		Log.d("db","insert new row");
 		refreshView();
 	}
 	
+	/**
+	 * Print all data in ListView. Get data form database.
+	 */
 	public void refreshView()
 	{
 		
@@ -84,7 +89,6 @@ public class TaskManager extends Activity
 			map.put("task_id",new String( cursor.getString(0)));
 			map.put("task",new String (cursor.getString(1)));
 
-			// adding HashList to ArrayList
 			menuItems.add(map);	
 		}
 		
@@ -98,12 +102,13 @@ public class TaskManager extends Activity
 		
 		final Context context = this;
 		
+		/*
+		 *	Run Click Listener. If click on item show remove window. 
+		 */
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
 			{
-//				Log.d(":)",""+((TextView) view.findViewById(R.id.task)).getText().toString());
-				
 		        Intent i = new Intent(context, RemoveFromDB.class);
 		        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		        i.putExtra("db_name",TABLE_TASK);

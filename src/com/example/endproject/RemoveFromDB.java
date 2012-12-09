@@ -16,7 +16,9 @@ public class RemoveFromDB extends Activity
 	private int id;
 	private String message;
 	
-	
+	/**
+	 * Create form and fill text view remove information. Also save id and table indormation.
+	 */
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
@@ -33,11 +35,19 @@ public class RemoveFromDB extends Activity
 		tv.setText(message);
 	}
 	
+	/**
+	 * Cancel button pressed
+	 * @param v
+	 */
 	public void bClosePressed(View v)
 	{
 		finish();
 	}
 	
+	/**
+	 * Remove button is pressed. Remove specivic id form table.
+	 * @param v
+	 */
 	public void bRemovePressed(View v)
 	{
 		String[] ids = new String [1];
@@ -46,6 +56,9 @@ public class RemoveFromDB extends Activity
 		finish();
 	}
 	
+	/**
+	 * Close database connection.
+	 */
 	public void onDestroy() {
     	
 		super.onDestroy();

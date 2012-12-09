@@ -89,12 +89,7 @@ public class CallAlarm extends Activity {
 	 */
 	private Cursor cursor;
 	
-	/**
-	 * Object store needs elements in main list.
-	 */
-	private ListView listGlobal;
 
-	private ArrayList<HashMap<String, ListView>> mainMenuItems;
 	
 	/**
 	 * Constructor. Initialize database helper.
@@ -123,11 +118,7 @@ public class CallAlarm extends Activity {
 		setContentView(R.layout.call_alarm);
 		
 		db = (new DatabaseHelper(this)).getWritableDatabase();
-		
-		listGlobal = (ListView) findViewById(R.id.listSeize);
-		
-		mainMenuItems = new ArrayList<HashMap<String, ListView>>();
-		
+				
 		//-------------------------------------ALARM---------------------------------------------//
 		alarm();
 		// -------------------------------------NEWS---------------------------------------------//
@@ -137,7 +128,11 @@ public class CallAlarm extends Activity {
 			// Disable from list
 			ListView list;
 			list = (ListView) findViewById(R.id.listNews);
-			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 100));		
+			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 100));	
+			
+			TextView text;
+			text = (TextView) findViewById(R.id.textNews);
+			text.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 1));
 		}
 		// -----------------------------------APHORISM-------------------------------------------//
 		if (checkItem("aphorism")) {
@@ -147,6 +142,10 @@ public class CallAlarm extends Activity {
 			ListView list;
 			list = (ListView) findViewById(R.id.listAphorism);
 			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 1));		
+			
+			TextView text;
+			text = (TextView) findViewById(R.id.textAphorism);
+			text.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 1));
 		}		
 		// --------------------------------------TASK--------------------------------------------//
 		if ( checkItem("task") ) {
@@ -155,10 +154,11 @@ public class CallAlarm extends Activity {
 			// Disable from list
 			ListView list;
 			list = (ListView) findViewById(R.id.listTask);
-			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 1));					
-			//list.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, 1));
-			//RelativeLayout layout = (RelativeLayout)findViewById(R.id.layout);
-			//layout.removeViewInLayout(list);
+			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 100));	
+			
+			TextView text;
+			text = (TextView) findViewById(R.id.textTask);
+			text.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 1));
 		}
 	}
 

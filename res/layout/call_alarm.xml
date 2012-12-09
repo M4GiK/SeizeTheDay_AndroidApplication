@@ -15,12 +15,52 @@
         android:onClick="bOffAlaemPressed" 
         />
 
+    <TextView
+        android:id="@+id/textTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/analogClock1"
+        android:text="@string/task"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+     <ListView
+        android:id="@+id/listTask"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textTask">
+    </ListView>
+    
+    <TextView
+        android:id="@+id/textNews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listTask"
+        android:text="@string/news"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
     <ListView
-        android:id="@+id/listSeize"
+        android:id="@+id/listNews"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textNews" >
+    </ListView>
+    
+    <TextView
+        android:id="@+id/textAphorism"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listNews"
+        android:text="@string/aphorism"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/listAphorism"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/analogClock1" >
+        android:layout_below="@+id/textAphorism" >
     </ListView>
 
     <Button

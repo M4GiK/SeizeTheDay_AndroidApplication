@@ -11,7 +11,9 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="bOffAlaemPressed" 
+        />
 
     <ListView
         android:id="@+id/listNews"
@@ -28,5 +30,15 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@android:id/list" >
     </ListView>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/analogClock1"
+        android:layout_toRightOf="@+id/analogClock1"
+        android:text="Off alarm" 
+        android:onClick="bOffAlaemPressed"
+        />
 
 </RelativeLayout>

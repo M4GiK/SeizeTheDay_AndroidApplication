@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -114,7 +115,7 @@ public class CallAlarm extends Activity {
 		//-------------------------------------NEWS---------------------------------------------//
 		news();
 		//-----------------------------------APHORISM-------------------------------------------//
-		aphorism();
+//		aphorism();
 	}
 
 	
@@ -272,13 +273,19 @@ public class CallAlarm extends Activity {
 
 
 
-	/**
-	 * 
-	 * @param v - View
-	 */
-	public void bClosePressed(View v) {
+//	/**
+//	 * 
+//	 * @param v - View
+//	 */
+//	public void bClosePressed(View v) {
+//		mp.stop();
+//		finish();
+//	}
+	
+	public void bOffAlaemPressed(View v) {
 		mp.stop();
-		finish();
+		Button b = (Button)findViewById(R.id.button1);
+		b.setVisibility(View.INVISIBLE);
 	}
 
 	

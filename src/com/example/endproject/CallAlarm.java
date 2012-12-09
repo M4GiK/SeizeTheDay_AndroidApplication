@@ -327,6 +327,11 @@ public class CallAlarm extends Activity {
 		finish();
 	}
 
+	public void bOffAlaemPressed(View v) {
+		mp.stop();
+		Button b = (Button)findViewById(R.id.button1);
+		b.setVisibility(View.INVISIBLE);
+	}
 	
 	
 	/**

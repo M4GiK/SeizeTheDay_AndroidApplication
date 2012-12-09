@@ -1,6 +1,5 @@
 package com.example.endproject;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.w3c.dom.Document;
@@ -18,7 +17,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -40,6 +38,11 @@ public class CallAlarm extends Activity {
 	 * Static field to define name in table
 	 */
 	private static final String TABLE_COMPONENT = "component";
+	
+	/**
+	 * Static field to define name in table.
+	 */
+	private static final String TABLE_TASK = "tasks";
 	
 	/**
 	 * Filed need to define item in XML file. Parent node.
@@ -85,8 +88,13 @@ public class CallAlarm extends Activity {
 	 * Object using to moved in database.
 	 */
 	private Cursor cursor;
-
 	
+	/**
+	 * Object store needs elements in main list.
+	 */
+	private ListView listGlobal;
+
+	private ArrayList<HashMap<String, ListView>> mainMenuItems;
 	
 	/**
 	 * Constructor. Initialize database helper.
@@ -94,6 +102,9 @@ public class CallAlarm extends Activity {
 	public CallAlarm() {
 	}
 
+	
+	
+	
 	/**
 	 * Called when the activity is starting. This is where most initialization
 	 * should go: calling setContentView(int) to inflate the activity's UI,
@@ -113,29 +124,45 @@ public class CallAlarm extends Activity {
 		
 		db = (new DatabaseHelper(this)).getWritableDatabase();
 		
-		//-------------------------------------ALARM--------------------------------------------//
+		listGlobal = (ListView) findViewById(R.id.listSeize);
+		
+		mainMenuItems = new ArrayList<HashMap<String, ListView>>();
+		
+		//-------------------------------------ALARM---------------------------------------------//
 		alarm();
 		// -------------------------------------NEWS---------------------------------------------//
 		if (checkItem("news")) {
 			news();
-		} else {
-			// Disable list
+		} else {			
+			// Disable from list
 			ListView list;
 			list = (ListView) findViewById(R.id.listNews);
-			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 100));
-			//list.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, 1));
-			//RelativeLayout layout = (RelativeLayout)findViewById(R.id.layout);
-			//layout.removeViewInLayout(list);
+			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 100));		
 		}
 		// -----------------------------------APHORISM-------------------------------------------//
 		if (checkItem("aphorism")) {
 			aphorism();
 		} else {
+			// Disable from list
 			ListView list;
-			list = (ListView) findViewById(R.id.listNews);
-			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 1));
+			list = (ListView) findViewById(R.id.listAphorism);
+			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 1));		
 		}		
+		// --------------------------------------TASK--------------------------------------------//
+		if ( checkItem("task") ) {
+			task();
+		} else {
+			// Disable from list
+			ListView list;
+			list = (ListView) findViewById(R.id.listTask);
+			list.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, 1));					
+			//list.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, 1));
+			//RelativeLayout layout = (RelativeLayout)findViewById(R.id.layout);
+			//layout.removeViewInLayout(list);
+		}
 	}
+
+
 
 	/**
 	 * This method check in database existing item.
@@ -162,6 +189,44 @@ public class CallAlarm extends Activity {
 		return false;
 	}
 
+	
+	
+	/**
+	 * This method call task to do when activity is started.
+	 */
+	private void task() {
+		
+		String[] resultColumns = new String[]{"_id", "task_text"};
+		
+		cursor = db.query(TABLE_TASK, resultColumns, null, null, null, null, "_id DESC");
+		
+		ListView list;
+
+		list = (ListView) findViewById(R.id.listTask);
+		ArrayList<HashMap<String, String>> menuItems = new ArrayList<HashMap<String, String>>();		
+		
+		for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) 
+		{
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("task_id",new String( cursor.getString(0)));
+			map.put("task",new String (cursor.getString(1)));
+
+			// adding HashList to ArrayList
+			menuItems.add(map);	
+		}
+		
+		
+		ListAdapter adapter = new SimpleAdapter(this, menuItems,
+				R.layout.task_item,
+				new String[] { "task_id", "task"}, new int[] {
+						R.id.task_id, R.id.task });
+
+		list.setAdapter(adapter);
+		
+	}
+	
+	
+	
 	/**
 	 * This method call aphorism when activity is started.
 	 */
@@ -327,11 +392,18 @@ public class CallAlarm extends Activity {
 		finish();
 	}
 
+	
+	
+	/**
+	 * 
+	 * @param v
+	 */
 	public void bOffAlaemPressed(View v) {
 		mp.stop();
 		Button b = (Button)findViewById(R.id.button1);
 		b.setVisibility(View.INVISIBLE);
 	}
+	
 	
 	
 	/**

@@ -11,11 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -26,6 +24,9 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity 
 {	
+	/**
+	 * Static field to define name in table
+	 */
 	private static final String TABLE = "timealarm";
 	
 	/**
@@ -43,9 +44,23 @@ public class MainActivity extends Activity
 	 */
 	private Cursor cursor;
 
-	
+	/**
+	 * Object using to moved in database.
+	 */
 	private Cursor cursor2;
 		
+	
+	
+	/**
+	 * Called when the activity is starting. This is where most initialization
+	 * should go: calling setContentView(int) to inflate the activity's UI,
+	 * using findViewById(int) to programmatically interact with widgets in the
+	 * UI, calling managedQuery(android.net.Uri, String[], String, String[],
+	 * String) to retrieve cursors for data being displayed, etc.
+	 * 
+	 * @param savedInstanceState
+	 *            - Bundle
+	 */
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
@@ -57,7 +72,6 @@ public class MainActivity extends Activity
         // get data with rawQuery
         cursor = db.rawQuery("SELECT _id, hour, minute FROM timealarm ORDER BY hour DESC", null);
         
-
     }
     
     @Override

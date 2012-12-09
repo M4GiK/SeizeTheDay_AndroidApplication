@@ -17,5 +17,8 @@
 	<string name="task_manager">Task Manager</string>
 	<string name="off_alarm">Off alarm</string>
 	<string name="remove">Remove</string>
+	<string name="task">Task to do</string>
+	<string name="news">News</string>
+	<string name="aphorism">Aphorism</string>
 
 </resources>

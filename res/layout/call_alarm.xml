@@ -16,19 +16,11 @@
         />
 
     <ListView
-        android:id="@+id/listNews"
-        android:layout_width="fill_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/analogClock1" >
-    </ListView>
-
-    <ListView
-        android:id="@+id/listAphorism"
+        android:id="@+id/listSeize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/listNews" >
+        android:layout_below="@+id/analogClock1" >
     </ListView>
 
     <Button
@@ -40,5 +32,7 @@
         android:text="@string/off_alarm" 
         android:onClick="bOffAlaemPressed"
         />
+
+
 
 </RelativeLayout>

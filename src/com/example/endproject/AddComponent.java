@@ -82,7 +82,7 @@ public class AddComponent extends Activity {
 		if (!cursor.moveToFirst())
 		{
 			ContentValues values=new ContentValues(1);
-			values.put("item", "Task Manager");
+			values.put("item", "task");
 			db.insert("component", null, values);
 			cursor.requery();
 		}

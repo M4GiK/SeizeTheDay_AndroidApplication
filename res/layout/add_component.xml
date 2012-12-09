@@ -32,19 +32,21 @@
 	/>
 
 	<Button
-	    android:id="@+id/button_cancel"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:onClick="buttonPressed"
-	    android:text="@string/button_text_cancel" 
-	    android:layout_marginTop="200dp" />
-
-	<Button
-	    android:id="@+id/button2"
+	    android:id="@+id/button_task"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:text="@string/task_manager" 
 	    android:onClick="bTaskManagerPresssed"
 	    />
+	
+	<Button
+	    android:id="@+id/button_cancel"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:onClick="buttonPressed"
+	    android:text="@string/button_text_cancel" 
+	    android:layout_marginTop="170dp" />
+
+
 
 </LinearLayout>

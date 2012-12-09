@@ -1,5 +1,6 @@
 package com.example.endproject;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.w3c.dom.Document;
@@ -21,7 +22,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.app.ListActivity;
+import android.app.Activity;
 
 /**
  * This class is responsible for displaying the prepared window.
@@ -29,7 +30,7 @@ import android.app.ListActivity;
  * @author Seize the Day
  * 
  */
-public class CallAlarm extends ListActivity {
+public class CallAlarm extends Activity {
 
 	/**
 	 * Static field to define name in table
@@ -127,6 +128,10 @@ public class CallAlarm extends ListActivity {
 
 		cursor = db.query(TABLE_COMPONENT, resultColumns, "item=?" , new String[]{"aphorism"}, null, null, null);
 		
+		ListView list;
+
+		list = (ListView) findViewById(R.id.listAphorism);
+		
 		ArrayList<HashMap<String, String>> menuItems = new ArrayList<HashMap<String, String>>();
 
 		XMLParser parser = new XMLParser();
@@ -134,7 +139,7 @@ public class CallAlarm extends ListActivity {
 		String xml = new String();
 		
 		if (cursor.moveToFirst()) {
-			xml = parser.getXmlFromUrl(cursor.getString(cursor.getColumnIndex("data")));	 // Getting XML.
+			xml = parser.getXmlFromUrl(cursor.getString(cursor.getColumnIndex("data")));	 // Getting XML.			
 		}
 		
 		Document doc = parser.getDomElement(xml); 											// Getting DOM element.
@@ -142,7 +147,7 @@ public class CallAlarm extends ListActivity {
 		NodeList nl = doc.getElementsByTagName(KEY_ITEM);
 		
 		// Looping through all item nodes <item>.
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i <= 1; i++) {
 			
 			// Creating new HashMap.
 			HashMap<String, String> map = new HashMap<String, String>();
@@ -164,11 +169,11 @@ public class CallAlarm extends ListActivity {
 				new String[] { KEY_TITLE, KEY_DESC}, new int[] {
 						R.id.title, R.id.description });
 
-		setListAdapter(adapter);
+		list.setAdapter(adapter);
 		
 	}
 
-
+	
 
 	/**
 	 * This method call news when activity is started. 
@@ -178,6 +183,10 @@ public class CallAlarm extends ListActivity {
 		String[] resultColumns = new String[] { "_id", "item", "data" };
 
 		cursor = db.query(TABLE_COMPONENT, resultColumns, "item=?" , new String[]{"news"}, null, null, null);
+		
+		ListView list;
+
+		list = (ListView) findViewById(R.id.listNews);
 		
 		ArrayList<HashMap<String, String>> menuItems = new ArrayList<HashMap<String, String>>();
 
@@ -217,12 +226,10 @@ public class CallAlarm extends ListActivity {
 				new String[] { KEY_TITLE, KEY_DESC, KEY_LINK}, new int[] {
 						R.id.title, R.id.description, R.id.link });
 
-		setListAdapter(adapter);
+		list.setAdapter(adapter);
 
-		// Selecting single ListView item.
-		ListView lv = getListView();
 
-		lv.setOnItemClickListener(new OnItemClickListener() {
+		list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,

@@ -15,5 +15,7 @@
 	<string name="button_text_news">News component</string>
 	<string name="button_text_aphorism">Aphorism component</string>
 	<string name="task_manager">Task Manager</string>
+	<string name="off_alarm">Off alarm</string>
+	<string name="remove">Remove</string>
 
 </resources>

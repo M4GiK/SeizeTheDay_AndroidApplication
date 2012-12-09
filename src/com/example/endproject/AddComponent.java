@@ -76,8 +76,19 @@ public class AddComponent extends Activity {
 
 	public void bTaskManagerPresssed(View v)
 	{
+		String[] resultColumns = new String[]{"_id","item"};
+		cursor = db.query("component",resultColumns,"item LIKE 'Task Manager'",null,null,null,"_id DESC");
+		
+		if (!cursor.moveToFirst())
+		{
+			ContentValues values=new ContentValues(1);
+			values.put("item", "Task Manager");
+			db.insert("component", null, values);
+			cursor.requery();
+		}
+		
 		Intent i = new Intent(this,TaskManager.class);
-		startActivity(i);
+		startActivity(i);		
 	}
 
 	/**

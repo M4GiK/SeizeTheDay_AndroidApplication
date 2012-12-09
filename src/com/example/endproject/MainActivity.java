@@ -47,11 +47,29 @@ public class MainActivity extends Activity
         
         // Create helper for database connection
         db = (new DatabaseHelper(this)).getWritableDatabase();
-        
         // get data with rawQuery
         cursor = db.rawQuery("SELECT _id, hour, minute FROM timealarm ORDER BY hour DESC", null);
         
-        String[] resultColumns = new String[] { "_id", "item", "data" };
+
+    }
+    
+    @Override
+    protected void onResume()
+    {
+    	super.onResume();
+        String[] resultColumns = new String[]{"hour", "minute"};
+        cursor = db.query(TABLE,resultColumns,null,null,null,null,null);
+        
+        if (cursor.moveToFirst()) 
+        {
+        	setAlarm(cursor.getInt(0),cursor.getInt(1));
+        }
+        else
+        {
+        	setAlarm();
+        }
+        
+        resultColumns = new String[] { "_id", "item", "data" };
         
         cursor2 = db.query(TABLE_COMPONENT, resultColumns, null , null, null, null, null);
         ListView list;
@@ -71,23 +89,6 @@ public class MainActivity extends Activity
 				android.R.layout.simple_list_item_1, componentsList);
 		
 		list.setAdapter(arrayAdapter);
-    }
-    
-    @Override
-    protected void onResume()
-    {
-    	super.onResume();
-        String[] resultColumns = new String[]{"hour", "minute"};
-        cursor = db.query(TABLE,resultColumns,null,null,null,null,null);
-        
-        if (cursor.moveToFirst()) 
-        {
-        	setAlarm(cursor.getInt(0),cursor.getInt(1));
-        }
-        else
-        {
-        	setAlarm();
-        }
     }
     
     private void setAlarm()

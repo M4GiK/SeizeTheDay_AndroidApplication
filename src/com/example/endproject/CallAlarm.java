@@ -1,5 +1,6 @@
 package com.example.endproject;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.w3c.dom.Document;
@@ -16,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -38,7 +40,7 @@ public class CallAlarm extends Activity {
 	 * Static field to define name in table
 	 */
 	private static final String TABLE_COMPONENT = "component";
-
+	
 	/**
 	 * Filed need to define item in XML file. Parent node.
 	 */
@@ -78,12 +80,14 @@ public class CallAlarm extends Activity {
 	 * Variable need to get access to database.
 	 */
 	private SQLiteDatabase db;
-
+	
 	/**
 	 * Object using to moved in database.
 	 */
 	private Cursor cursor;
 
+	
+	
 	/**
 	 * Constructor. Initialize database helper.
 	 */
@@ -102,14 +106,14 @@ public class CallAlarm extends Activity {
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
+		
 		super.onCreate(savedInstanceState);
-
+		
 		setContentView(R.layout.call_alarm);
-
+		
 		db = (new DatabaseHelper(this)).getWritableDatabase();
-
-		// -------------------------------------ALARM--------------------------------------------//
+		
+		//-------------------------------------ALARM--------------------------------------------//
 		alarm();
 		// -------------------------------------NEWS---------------------------------------------//
 		if (checkItem("news")) {
@@ -212,6 +216,8 @@ public class CallAlarm extends Activity {
 
 	}
 
+	
+
 	/**
 	 * This method call news when activity is started.
 	 */
@@ -267,6 +273,7 @@ public class CallAlarm extends Activity {
 
 		list.setAdapter(adapter);
 
+
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -287,6 +294,8 @@ public class CallAlarm extends Activity {
 
 	}
 
+
+
 	/**
 	 * This method call alarm when activity is started.
 	 */
@@ -306,6 +315,8 @@ public class CallAlarm extends Activity {
 
 	}
 
+
+
 	/**
 	 * 
 	 * @param v
@@ -316,6 +327,8 @@ public class CallAlarm extends Activity {
 		finish();
 	}
 
+	
+	
 	/**
 	 * 
 	 */
@@ -324,6 +337,8 @@ public class CallAlarm extends Activity {
 		mp.stop();
 	}
 
+	
+	
 	/**
 	 * 
 	 */

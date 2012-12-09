@@ -38,6 +38,7 @@
         </activity>
         <activity android:name=".CallAlarm" android:label="Alarm"/>
         <activity android:name=".TaskManager" android:label="Task Manager"/>
+		<activity android:name=".RemoveFromDB" android:label="Remove Item"/>
         <receiver android:name="Alarm" />
 
         
